@@ -1,0 +1,16 @@
+# Configuracion local de Claude
+.claude/
+.mcp.json
+
+# Notas personales
+private/
+
+# Base de datos SQLite
+db/*.db
+
+# Binarios
+gratitude-api
+*.exe
+
+# Dependencias de Go (si se generan localmente)
+vendor/
