@@ -5,6 +5,9 @@
 # Notas personales
 private/
 
+# Variables de entorno
+.env
+
 # Base de datos SQLite
 db/*.db
 
