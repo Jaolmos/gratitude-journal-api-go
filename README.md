@@ -1,6 +1,6 @@
 # Gratitude Journal API
 
-API REST para registrar notas de agradecimiento diarias.
+API REST para registrar notas de agradecimiento diarias. Implementada con el patron Repository en Go.
 
 ## Requisitos
 
