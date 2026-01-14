@@ -12,12 +12,23 @@ import (
 	"gratitude-journal-api/internal/service"
 )
 
-type NoteHandler struct {
-	service *service.NoteService
+// Interface definida donde se consume (principio de Go)
+type NoteService interface {
+	GetAll() ([]model.Note, error)
+	GetByDate(date time.Time) ([]model.Note, error)
+	GetByDateRange(from, to time.Time) ([]model.Note, error)
+	GetByID(id int64) (*model.Note, error)
+	Create(content string, date *time.Time) (*model.Note, error)
+	Update(id int64, content string, date *time.Time) (*model.Note, error)
+	Delete(id int64) error
 }
 
-func NewNoteHandler(service *service.NoteService) *NoteHandler {
-	return &NoteHandler{service: service}
+type NoteHandler struct {
+	service NoteService
+}
+
+func NewNoteHandler(svc NoteService) *NoteHandler {
+	return &NoteHandler{service: svc}
 }
 
 // Estructuras para request/response JSON

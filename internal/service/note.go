@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"gratitude-journal-api/internal/model"
-	"gratitude-journal-api/internal/repository"
 )
 
 var (
@@ -13,11 +12,22 @@ var (
 	ErrNoteNotFound = errors.New("nota no encontrada")
 )
 
-type NoteService struct {
-	repo *repository.NoteRepository
+// Interface definida donde se consume (principio de Go)
+type NoteRepository interface {
+	FindAll() ([]model.Note, error)
+	FindByDate(date time.Time) ([]model.Note, error)
+	FindByDateRange(from, to time.Time) ([]model.Note, error)
+	FindByID(id int64) (*model.Note, error)
+	Create(note *model.Note) error
+	Update(note *model.Note) error
+	Delete(id int64) error
 }
 
-func NewNoteService(repo *repository.NoteRepository) *NoteService {
+type NoteService struct {
+	repo NoteRepository
+}
+
+func NewNoteService(repo NoteRepository) *NoteService {
 	return &NoteService{repo: repo}
 }
 
