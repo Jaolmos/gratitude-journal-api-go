@@ -88,14 +88,20 @@ curl -X DELETE http://localhost:8080/notes/1
 
 ```
 gratitude-journal-api/
-├── cmd/server/main.go        # Punto de entrada
+├── cmd/server/main.go           # Punto de entrada
 ├── internal/
-│   ├── model/note.go         # Estructura de datos
-│   ├── repository/           # Acceso a base de datos
-│   ├── service/note.go       # Logica de negocio
-│   └── handler/note.go       # Endpoints HTTP
-├── db/                       # Base de datos SQLite
-├── .env.example              # Plantilla de configuracion
+│   ├── model/note.go            # Estructura de datos
+│   ├── repository/              # Acceso a base de datos
+│   │   ├── db.go
+│   │   └── note.go
+│   ├── service/
+│   │   ├── note.go              # Logica de negocio
+│   │   └── note_test.go         # Tests del service
+│   └── handler/
+│       ├── note.go              # Endpoints HTTP
+│       └── note_test.go         # Tests del handler
+├── db/                          # Base de datos SQLite
+├── .env.example                 # Plantilla de configuracion
 └── go.mod
 ```
 
