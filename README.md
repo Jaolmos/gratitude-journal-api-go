@@ -99,6 +99,22 @@ gratitude-journal-api/
 └── go.mod
 ```
 
+## Tests
+
+```bash
+# Ejecutar todos los tests
+go test ./...
+
+# Con detalle
+go test ./... -v
+
+# Solo tests del service
+go test ./internal/service/...
+
+# Solo tests del handler
+go test ./internal/handler/...
+```
+
 ## Arquitectura
 
 Patron Repository con capas:
